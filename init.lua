@@ -1,12 +1,16 @@
 local MN = minetest.get_current_modname()
 local MP = minetest.get_modpath(MN)
+node_placer = {}
+node_placer.set_placer = function(pos,name)
+  local nmeta = minetest.get_meta(pos)
+  nmeta:set_string("np_placer",pname)
+  nmeta:set_int("np_time",os.time())
+end
 minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack, pointed_thing)
   if not(placer and placer:is_player()) then return end
   if (newnode.name == "air") then return end
   local pname = placer:get_player_name()
-  local nmeta = minetest.get_meta(pos)
-  nmeta:set_string("np_placer",pname)
-  nmeta:set_int("np_time",os.time())
+  node_placer.set_placer(pos,pname)
 end)
 
 
