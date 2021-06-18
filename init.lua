@@ -3,7 +3,7 @@ local MP = minetest.get_modpath(MN)
 node_placer = {}
 node_placer.set_placer = function(pos,name)
   local nmeta = minetest.get_meta(pos)
-  nmeta:set_string("np_placer",pname)
+  nmeta:set_string("np_placer",name)
   nmeta:set_int("np_time",os.time())
 end
 minetest.register_on_placenode(function(pos, newnode, placer, oldnode, itemstack, pointed_thing)
