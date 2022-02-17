@@ -1,0 +1,2 @@
+# Use legacy node placer saving mode
+np_legacy (Legacy saving mode) bool false
