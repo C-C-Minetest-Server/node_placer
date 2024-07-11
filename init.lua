@@ -50,6 +50,7 @@ end
 minetest.register_craftitem("node_placer:check_tool", {
 	description = S("Node Placer Checking Tool"),
 	inventory_image = "node_placer_search.png",
+	wield_image = "node_placer_search.png",
 	stack_max = 1,
 	on_place = on_place,
 })
@@ -57,6 +58,7 @@ minetest.register_craftitem("node_placer:check_tool", {
 minetest.register_craftitem("node_placer:check_tool_liquid", {
 	description = S("Node Placer Checking Tool (Liquid Pointable)"),
 	inventory_image = "node_placer_search.png^bubble.png",
+	wield_image = "node_placer_search.png",
 	stack_max = 1,
 	liquids_pointable = true,
 	on_place = on_place,
