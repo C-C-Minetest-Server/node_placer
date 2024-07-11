@@ -1,3 +1,8 @@
+-- node_placer/tools.lua
+-- Tools to work with node_placer
+-- Copyright 2021, 2024  1F616EMO
+-- SPDX-License-Identifier: LGPL-2.1-or-later
+
 local NPRF = io.open(minetest.get_worldpath().."/node_placer_record.lua", "w+")
 
 local function on_place(itemstack, placer, pointed_thing)

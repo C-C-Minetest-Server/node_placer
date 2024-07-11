@@ -1,4 +1,7 @@
+-- node_placer/bucket.lua
 -- Redo bucket mod to makes bucket incuded in node_placer
+-- Copyright 2021, 2024  1F616EMO
+-- SPDX-License-Identifier: LGPL-2.1-or-later
 
 local function check_protection(pos, name, text)
 	if minetest.is_protected(pos, name) then

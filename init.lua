@@ -1,3 +1,8 @@
+-- node_placer/init.lua
+-- Put node placer data into the node
+-- Copyright 2021, 2024  1F616EMO
+-- SPDX-License-Identifier: LGPL-2.1-or-later
+
 local MN = minetest.get_current_modname()
 local MP = minetest.get_modpath(MN)
 node_placer = {}
