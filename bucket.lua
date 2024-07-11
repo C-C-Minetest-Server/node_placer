@@ -17,7 +17,7 @@ local function check_protection(pos, name, text)
 end
 
 function bucket.register_liquid(source, flowing, itemname, inventory_image, name,
-		groups, force_renew)
+								groups, force_renew)
 	bucket.liquids[source] = {
 		source = source,
 		flowing = flowing,
@@ -45,7 +45,7 @@ function bucket.register_liquid(source, flowing, itemname, inventory_image, name
 
 				-- Call on_rightclick if the pointed node defines it
 				if ndef and ndef.on_rightclick and
-						not (user and user:is_player() and
+					not (user and user:is_player() and
 						user:get_player_control().sneak) then
 					return ndef.on_rightclick(
 						pointed_thing.under,
@@ -75,17 +75,17 @@ function bucket.register_liquid(source, flowing, itemname, inventory_image, name
 
 				if check_protection(lpos, user
 						and user:get_player_name()
-						or "", "place "..source) then
+						or "", "place " .. source) then
 					return
 				end
 
-				minetest.set_node(lpos, {name = source})
-        -- Addtional code to record owner
-        if user and user:is_player() then
-          local nmeta = minetest.get_meta(lpos)
-          nmeta:set_string("np_placer",user:get_player_name())
-          nmeta:set_int("np_time",os.time())
-        end
+				minetest.set_node(lpos, { name = source })
+				-- Addtional code to record owner
+				if user and user:is_player() then
+					local nmeta = minetest.get_meta(lpos)
+					nmeta:set_string("np_placer", user:get_player_name())
+					nmeta:set_int("np_time", os.time())
+				end
 				return ItemStack("bucket:bucket_empty")
 			end
 		})
@@ -93,8 +93,8 @@ function bucket.register_liquid(source, flowing, itemname, inventory_image, name
 end
 
 -- Re register buckets to apply new Settings
-for k,v in pairs({"bucket:bucket_river_water","bucket:bucket_water","bucket:bucket_lava"}) do
-  minetest.unregister_item(v)
+for k, v in pairs({ "bucket:bucket_river_water", "bucket:bucket_water", "bucket:bucket_lava" }) do
+	minetest.unregister_item(v)
 end
 
 local BS = minetest.get_translator("bucket")
@@ -104,7 +104,7 @@ bucket.register_liquid(
 	"bucket:bucket_water",
 	"bucket_water.png",
 	BS("Water Bucket"),
-	{tool = 1, water_bucket = 1}
+	{ tool = 1, water_bucket = 1 }
 )
 
 bucket.register_liquid(
@@ -113,7 +113,7 @@ bucket.register_liquid(
 	"bucket:bucket_river_water",
 	"bucket_river_water.png",
 	BS("River Water Bucket"),
-	{tool = 1, water_bucket = 1},
+	{ tool = 1, water_bucket = 1 },
 	true
 )
 
@@ -123,5 +123,5 @@ bucket.register_liquid(
 	"bucket:bucket_lava",
 	"bucket_lava.png",
 	BS("Lava Bucket"),
-	{tool = 1}
+	{ tool = 1 }
 )
