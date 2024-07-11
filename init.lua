@@ -7,6 +7,9 @@ local S = minetest.get_translator("node_placer")
 
 node_placer = {}
 
+---Set the placer of a node
+---@param pos vector The position of the node
+---@param name string The name of the player
 node_placer.set_placer = function(pos, name)
 	local nmeta = minetest.get_meta(pos)
 	nmeta:set_string("np_placer", name)
@@ -22,8 +25,13 @@ minetest.register_on_placenode(function(pos, newnode, placer)
 end)
 
 
-local function on_place(_, placer, pointed_thing)
+local function on_place(itemstack, placer, pointed_thing)
 	if not (placer and placer:is_player()) then return end
+	if not minetest.check_player_privs(placer, { server = true }) then
+		minetest.chat_send_player(pname, S("Insufficant privilege!"))
+		return itemstack
+	end
+
 	if not pointed_thing then return end
 	local ppos = minetest.get_pointed_thing_position(pointed_thing)
 	local nmeta = minetest.get_meta(ppos)
@@ -33,20 +41,23 @@ local function on_place(_, placer, pointed_thing)
 	if np_placer == "" or np_time_int == 0 then
 		minetest.chat_send_player(pname, S("The placer of this node is unknown."))
 	else
-		minetest.chat_send_player(pname, "The placer of this node is @1, placed on @2.",
-			np_placer, os.date("%m/%d/%y %H:%M:%S %z", np_time_int))
+		minetest.chat_send_player(pname, S("The placer of this node is @1, placed on @2.",
+			np_placer, os.date("%m/%d/%y %H:%M:%S %z", np_time_int)))
 	end
+	return itemstack
 end
 
 minetest.register_craftitem("node_placer:check_tool", {
 	description = S("Node Placer Checking Tool"),
 	inventory_image = "node_placer_search.png",
+	stack_max = 1,
 	on_place = on_place,
 })
 
 minetest.register_craftitem("node_placer:check_tool_liquid", {
 	description = S("Node Placer Checking Tool (Liquid Pointable)"),
 	inventory_image = "node_placer_search.png^bubble.png",
+	stack_max = 1,
 	liquids_pointable = true,
 	on_place = on_place,
 })
