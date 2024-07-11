@@ -1,0 +1,6 @@
+# textdomain: node_placer
+
+##[ init.lua ]##
+The placer of this node is unknown.=
+Node Placer Checking Tool=
+Node Placer Checking Tool (Liquid Pointable)=
