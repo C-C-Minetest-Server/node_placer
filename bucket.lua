@@ -1,5 +1,4 @@
 -- Redo bucket mod to makes bucket incuded in node_placer
-if not minetest.get_modpath("bucket") then return end
 
 local function check_protection(pos, name, text)
 	if minetest.is_protected(pos, name) then
