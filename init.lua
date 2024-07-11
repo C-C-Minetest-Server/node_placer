@@ -48,5 +48,3 @@ minetest.register_craftitem("node_placer:check_tool_liquid", {
 	liquids_pointable = true,
 	on_place = on_place,
 })
-
-dofile(MP .. "/bucket.lua")
