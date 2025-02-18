@@ -28,7 +28,7 @@ end)
 local function on_place(itemstack, placer, pointed_thing)
 	if not (placer and placer:is_player()) then return end
 	if not minetest.check_player_privs(placer, { server = true }) then
-		minetest.chat_send_player(pname, S("Insufficant privilege!"))
+		minetest.chat_send_player(placer:get_player_name(), S("Insufficant privilege!"))
 		return itemstack
 	end
 
