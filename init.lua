@@ -27,7 +27,7 @@ end)
 
 local function on_place(itemstack, placer, pointed_thing)
 	if not (placer and placer:is_player()) then return end
-	if not core.check_player_privs(placer, { server = true }) then
+	if not core.check_player_privs(placer, { ban = true }) then
 		core.chat_send_player(placer:get_player_name(), S("Insufficant privilege!"))
 		return itemstack
 	end
